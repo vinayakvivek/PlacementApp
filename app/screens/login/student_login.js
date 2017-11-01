@@ -183,14 +183,7 @@ export default class StudentLogin extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.container}>
-            <View style={styles.signupWrap}>
-              <Text style={styles.accountText}>Don't have an account?</Text>
-              <TouchableOpacity activeOpacity={.5} onPress={this.onPressSignUp.bind(this)}>
-                <View>
-                  <Text style={styles.signupLinkText}>Register</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
+            
           </View>
         </Image>
       </View>
