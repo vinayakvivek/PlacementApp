@@ -6,9 +6,7 @@ import { AppRegistry,
 import StudentLogin from './app/screens/login/student_login.js'
 import IcLogin from './app/screens/login/ic_login.js'
 import CompanyLogin from './app/screens/login/company_login.js'
-// import StudentRegister from './app/screens/login/student_register.js'
-// import IcRegister from './app/screens/login/ic_register.js'
-// import CompanyRegister from './app/screens/login/company_register.js'
+import CompanyRegister from './app/screens/login/company_register.js'
 import HomeLogin from './app/screens/login/home_login.js'
 
 
@@ -36,15 +34,9 @@ const LoginScreen = StackNavigator({
     Company: {
       screen: CompanyLogin
     },
-    // RegisterStudent: {
-    //   screen: StudentRegister
-    // }, 
-    // RegisterIc:{
-    // 	screen: IcRegister
-    // },
-    // RegisterCompany:{
-    // 	screen: CompanyRegister
-    // }
+    RegisterCompany:{
+    	screen: CompanyRegister
+    }
   },
   {
     headerMode: 'none'
