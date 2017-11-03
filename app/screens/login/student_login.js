@@ -47,48 +47,23 @@ export default class StudentLogin extends Component {
   }
 
   componentDidMount(){
-    this.retrieveToken();
+    // this.retrieveToken();
   }
 
-  openApp(token) {
+  openApp(name) {
     // const resetAction = NavigationActions.reset({
     //       index: 0,
     //       actions: [
-    //         NavigationActions.navigate({ routeName: 'App', params: {token:token}})
+    //         NavigationActions.navigate({ routeName: 'HomeApp', params: {username:name}})
     //       ]
     //     });
         this.props.navigation.dispatch(resetAction);
   }
-  checkToken(token){
-    var url = URL + "/user/check-token/";
-    fetch(url, {
-      method: "GET",
-      headers: {
-        'Authorization' : 'Token ' + token,
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-      },
-    })
-    .then( (response) => response.json())
-    .then( (responseData) => {
-      var valid = responseData.valid;
-      if (valid) {
-        this.saveToken(token);
-        this.openApp(token);
-      }
-      else{
-        Toast.show("Not Valid",Toast.SHORT);
-      }
-    })
-    .catch( (error) => {
-      console.log(error);
-      Toast.show("Error", Toast.SHORT);
-    });
-  }
 
-  getToken(){
 
-    var url = URL + "/api-token-auth/";
+  getLogin(){
+
+    var url = URL + "/login";
     fetch(url, {
       method: "POST",
       headers: {
@@ -103,9 +78,13 @@ export default class StudentLogin extends Component {
     })
     .then( (response) => response.json())
     .then( (responseData) => {
-      var token = responseData.token;
-      Toast.show(token,Toast.SHORT);
-      this.checkToken(token);
+      var status = responseData.status;
+      Toast.show(status,Toast.SHORT);
+      var name = responseData.data;
+      Toast.show(name,Toast.LONG);
+      var some = this.state.username;
+      Toast.show(some,Toast.LONG);
+      this.openApp(some);
     })
     .catch( (error) => {
       console.log(error);
@@ -115,33 +94,11 @@ export default class StudentLogin extends Component {
   }
 
 
-  retrieveToken(){
-    try {
-      store.get('token')
-      .then( (token) => {
-        this.checkToken(token);
-      });
-    }
-    catch (error) {
-      Toast.show("Failed Token Retrieve",Toast.SHORT);
-    }
-  }
-
-  saveToken(token){
-    try {
-      store.save('token',token);
-      Toast.show("Token Success Save",Toast.SHORT);
-    }
-    catch (error) {
-      console.log(error);
-      Toast.show("Failed Token Save",Toast.SHORT);
-    }
-  }
   onPressSignUp(){
     this.props.navigation.navigate('RegisterStudent');
   }
   onLoginPressed() {
-    this.getToken();
+    this.getLogin();
   }
 
   render() {
@@ -196,28 +153,7 @@ export default class StudentLogin extends Component {
 
 }
 
-// const styles = StyleSheet.create({
-//   background: {
-//     width, 
-//     height,
-//   },
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

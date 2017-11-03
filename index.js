@@ -46,7 +46,7 @@ const App = StackNavigator({
     Login: {
       screen : LoginScreen
     },
-    App: {
+    HomeApp: {
       screen : MainApp
     },
   },
