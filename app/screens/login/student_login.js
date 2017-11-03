@@ -41,7 +41,6 @@ export default class StudentLogin extends Component {
       username: "",
       password: "",
       type:0,
-      token: null,
     };
 
   }
@@ -51,12 +50,12 @@ export default class StudentLogin extends Component {
   }
 
   openApp(name) {
-    // const resetAction = NavigationActions.reset({
-    //       index: 0,
-    //       actions: [
-    //         NavigationActions.navigate({ routeName: 'HomeApp', params: {username:name}})
-    //       ]
-    //     });
+    const resetAction = NavigationActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName: 'Hey', params: {username:name}})
+          ]
+        });
         this.props.navigation.dispatch(resetAction);
   }
 
@@ -81,10 +80,14 @@ export default class StudentLogin extends Component {
       var status = responseData.status;
       Toast.show(status,Toast.SHORT);
       var name = responseData.data;
-      Toast.show(name,Toast.LONG);
-      var some = this.state.username;
-      Toast.show(some,Toast.LONG);
-      this.openApp(some);
+      // Toast.show(name,Toast.LONG);
+      var username = this.state.username;
+      // Toast.show(some,Toast.LONG);
+      if(status){
+        this.openApp(username);
+      }else {
+        Toast.show("Not Valid 'this toast is by app' (^_^)",Toast.SHORT);
+      }
     })
     .catch( (error) => {
       console.log(error);
@@ -94,9 +97,6 @@ export default class StudentLogin extends Component {
   }
 
 
-  onPressSignUp(){
-    this.props.navigation.navigate('RegisterStudent');
-  }
   onLoginPressed() {
     this.getLogin();
   }

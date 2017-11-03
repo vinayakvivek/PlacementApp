@@ -49,7 +49,7 @@ export default class CompanyRegister extends Component {
 		this.props.navigation.dispatch(NavigationActions.back());
 	}
 	onSignUp() {
-    var url = URL + '/user/register/';
+    var url = URL + '/company/register';
     Toast.show(this.state.username);
     fetch(url, {
       method: "POST",
@@ -67,7 +67,7 @@ export default class CompanyRegister extends Component {
     })
     .then( (response) => response.json())
     .then( (responseData) => {
-    	Toast.show("User Registered")
+    	Toast.show("Company Registered")
     	this.openLogin();
     })
     .catch( (error) => {

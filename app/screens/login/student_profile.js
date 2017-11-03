@@ -19,12 +19,18 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class Logoutscreen extends Component<{}> {
+export default class StudentScreen extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to profile sdfbsdfkh nsd
+          ssflsadkfn defaultsfc kfs;defaultsfc
+
+
+          sdmc sdnv stylesCsdC
+          zdvnkds Viewsdfksd View
+          sdvf dfvn,
         </Text>
         <Text style={styles.instructions}>
           To get started, edit App.js

@@ -34,107 +34,7 @@ const personIcon = require("./person.png");
 
 
 export default class IcLogin extends Component {
-  // constructor(props) {
-
-  //   super(props);
-  //   this.state = {
-  //     username: "",
-  //     password: "",
-  //     token: null,
-  //   };
-
-  // }
-
-  // componentDidMount(){
-  //   this.retrieveToken();
-  // }
-
-  // openApp(token) {
-  //   // const resetAction = NavigationActions.reset({
-  //   //       index: 0,
-  //   //       actions: [
-  //   //         NavigationActions.navigate({ routeName: 'App', params: {token:token}})
-  //   //       ]
-  //   //     });
-  //       this.props.navigation.dispatch(resetAction);
-  // }
-  // checkToken(token){
-  //   var url = URL + "/user/check-token/";
-  //   fetch(url, {
-  //     method: "GET",
-  //     headers: {
-  //       'Authorization' : 'Token ' + token,
-  //         'Accept': 'application/json',
-  //         'Content-Type': 'application/json',
-  //     },
-  //   })
-  //   .then( (response) => response.json())
-  //   .then( (responseData) => {
-  //     var valid = responseData.valid;
-  //     if (valid) {
-  //       this.saveToken(token);
-  //       this.openApp(token);
-  //     }
-  //     else{
-  //       Toast.show("Not Valid",Toast.SHORT);
-  //     }
-  //   })
-  //   .catch( (error) => {
-  //     console.log(error);
-  //     Toast.show("Error", Toast.SHORT);
-  //   });
-  // }
-
-  // getToken(){
-
-  //   var url = URL + "/api-token-auth/";
-  //   fetch(url, {
-  //     method: "POST",
-  //     headers: {
-  //         'Accept': 'application/json',
-  //         'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       username: this.state.username,
-  //       password: this.state.password,
-  //     })
-  //   })
-  //   .then( (response) => response.json())
-  //   .then( (responseData) => {
-  //     var token = responseData.token;
-  //     Toast.show(token,Toast.SHORT);
-  //     this.checkToken(token);
-  //   })
-  //   .catch( (error) => {
-  //     console.log(error);
-  //     Toast.show("Error", Toast.SHORT);
-  //   });
-
-  // }
-
-
-  // retrieveToken(){
-  //   try {
-  //     store.get('token')
-  //     .then( (token) => {
-  //       this.checkToken(token);
-  //     });
-  //   }
-  //   catch (error) {
-  //     Toast.show("Failed Token Retrieve",Toast.SHORT);
-  //   }
-  // }
-
-  // saveToken(token){
-  //   try {
-  //     store.save('token',token);
-  //     Toast.show("Token Success Save",Toast.SHORT);
-  //   }
-  //   catch (error) {
-  //     console.log(error);
-  //     Toast.show("Failed Token Save",Toast.SHORT);
-  //   }
-  // }
+  
   onPressC(){
     this.props.navigation.navigate('Company');
   }
@@ -187,28 +87,6 @@ export default class IcLogin extends Component {
 
 }
 
-// const styles = StyleSheet.create({
-//   background: {
-//     width, 
-//     height,
-//   },
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
 const styles = StyleSheet.create({
   container: {
     flex: 1,
