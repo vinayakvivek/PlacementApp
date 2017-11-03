@@ -40,6 +40,7 @@ export default class IcLogin extends Component {
     this.state = {
       username: "",
       password: "",
+      type:1,
       token: null,
     };
 
@@ -97,6 +98,7 @@ export default class IcLogin extends Component {
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
+        type:1,
       })
     })
     .then( (response) => response.json())

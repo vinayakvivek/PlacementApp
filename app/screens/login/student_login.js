@@ -40,6 +40,7 @@ export default class StudentLogin extends Component {
     this.state = {
       username: "",
       password: "",
+      type:0,
       token: null,
     };
 
@@ -97,6 +98,7 @@ export default class StudentLogin extends Component {
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
+        type:0,
       })
     })
     .then( (response) => response.json())

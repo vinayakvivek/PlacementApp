@@ -160,7 +160,7 @@ export default class CompanyRegister extends Component {
 
             <TouchableOpacity onPress={this.onSignUp.bind(this)}>
               <View style={styles.signup}>
-                <Text style={styles.whiteFont}>Sign Up</Text>
+                <Text style={styles.whiteFont}>Register</Text>
               </View>
             </TouchableOpacity>
           </View>
