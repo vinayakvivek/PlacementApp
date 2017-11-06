@@ -106,17 +106,23 @@ export default class JafScreen extends Component<{}> {
     const rootNavigation = this.props.screenProps.rootNavigation;
     rootNavigation.navigate('DrawerOpen'); 
   }
+  rowPressed(jaf){
+    Toast.show("to be added");
+  }
   renderJaf(jaf){
     Toast.show(jaf.company_name);
     return (
+      <TouchableOpacity onPress = { () => this.rowPressed(jaf) } >
 
         <View style={styles.containerStyle}>
-        <Text >
-
-        jaf company:
-        {jaf.company_name}
-        </Text>
+          <Text>{jaf.jaf_no} : {jaf.jaf_name}</Text>
+          <Text style={styles.welcome} > jaf company: {jaf.company_name}</Text>
         </View>
+          <View style={styles.containerStyle}>
+
+         <Text > Stipend: {jaf.stipend} </Text>
+         </View>
+        </TouchableOpacity>
       );
   }
   renderMainView(){
