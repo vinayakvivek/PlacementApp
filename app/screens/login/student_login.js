@@ -46,7 +46,7 @@ export default class StudentLogin extends Component {
   }
 
   componentDidMount(){
-    // this.retrieveToken();
+    // this.retrieveToken()
   }
 
   openApp(name) {

@@ -8,18 +8,77 @@ import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
+  View,
   Text,
-  View
+  TextInput,
+  Button,
+  ToastAndroid,
+  Image,
+  TouchableHighlight,
+  Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import URL from '../../constants.js';
+
+import Toast from 'react-native-simple-toast';
+
+import { NavigationActions } from 'react-navigation';
+
+const { width, height } = Dimensions.get("window");
+
+const background = require("./back.jpg");
+const mark = require("./icon.png");
+const lockIcon = require("./lock.png");
+const personIcon = require("./person.png");
 
 export default class StudentScreen extends Component<{}> {
+  constructor(props) {
+
+    super(props);
+    this.state = {
+      name: "",
+      rollno:"",
+      cpi:0,
+      deptname:"",
+      
+    };
+
+  }
+  componentDidMount(){
+    this.pageload();
+  }
+  pageload(){
+    var url = URL + "/student";
+    fetch(url, {
+      method: "GET",
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      // body: JSON.stringify({
+        
+      // })
+    })
+    .then( (response) => response.json())
+    .then( (responseData) => {
+      var status = responseData.status;
+      Toast.show(status,Toast.SHORT);
+      var name = responseData.data.name;
+      Toast.show(name,Toast.LONG);
+      var rollno = this.state.data.rollno;
+      Toast.show(rollno,Toast.LONG);
+      if(status=="true"){
+        this.openApp(username);
+      }else {
+        Toast.show("Not Valid 'this toast is by app' (^_^)",Toast.SHORT);
+      }
+    })
+    .catch( (error) => {
+      console.log(error);
+      Toast.show("Error", Toast.SHORT);
+    });
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -35,9 +94,7 @@ export default class StudentScreen extends Component<{}> {
         <Text style={styles.instructions}>
           To get started, edit App.js
         </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        
       </View>
     );
   }
