@@ -136,7 +136,7 @@ export default class StudentScreen extends Component<{}> {
           <View style={styles.wrapper}>
 
         <Text style={styles.welcome}>
-          Welcome {this.state.name}  (^_^)
+          Welcome {this.state.name}  
         </Text>
         <Text style={styles.welcome}>
           Full Name: {this.state.name}

@@ -13,6 +13,9 @@ import CompanyRegister from './app/screens/login/company_register.js'
 import HomeLogin from './app/screens/login/home_login.js'
 import StudentScreen from './app/screens/login/student_profile.js'
 import WebScreen from './app/screens/login/webpage.js'
+import JafScreen from './app/screens/login/jafpage.js'
+
+
 
 import {
   TabNavigator,
@@ -38,9 +41,12 @@ const DrawApp = DrawerNavigator({
 
 
 const Profile = StackNavigator({
-	StudentProfile: {
+		StudentProfile: {
 			screen : StudentScreen
 		},
+		JafPage:{
+			screen: JafScreen
+		}
 	},
 	{
 		headerMode: 'none'
