@@ -64,12 +64,17 @@ export default class StudentScreen extends Component<{}> {
     .then( (responseData) => {
       var status = responseData.status;
       Toast.show(status,Toast.SHORT);
-      var name = responseData.data.name;
-      Toast.show(name,Toast.LONG);
-      var rollno = this.state.data.rollno;
-      Toast.show(rollno,Toast.LONG);
+      // var name = responseData.data.name;
+      // Toast.show(name,Toast.LONG);
+      // var rollno = this.state.data.rollno;
+      // Toast.show(rollno,Toast.LONG);
       if(status=="true"){
-        this.openApp(username);
+        this.setstate({
+          name: responseData.data.name,
+          rollno: responseData.data.rollno,
+          cpi:responseData.data.cpi,
+          deptname:responseData.data.dept_name,
+        })
       }else {
         Toast.show("Not Valid 'this toast is by app' (^_^)",Toast.SHORT);
       }
