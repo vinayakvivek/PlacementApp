@@ -103,6 +103,7 @@ export default class StudentScreen extends Component<{}> {
     }
   onJaf(){
     Toast.show("Show Jaf");
+    this.props.navigation.navigate('JafPage');
   }
  
   openDrawer() {

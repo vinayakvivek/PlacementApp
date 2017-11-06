@@ -17,6 +17,7 @@ import {
   TouchableHighlight,
   Dimensions,
   ScrollView,
+  ListView,
   TouchableOpacity,
   
 } from 'react-native';
@@ -40,13 +41,9 @@ export default class JafScreen extends Component<{}> {
 
     super(props);
     this.state = {
-      company_name: "",
-      cpi_cutoff:0,
-      description:"",
-      jaf_name:"",
-      jaf_no:0,
-      signedup:"",
-      stipend:0,
+      status:true,
+      dataSource : new ListView.DataSource({
+          rowHasChanged: (row1, row2) => row1 !== row2,})
     };
     this.openDrawer = this.openDrawer.bind(this);
 
@@ -76,13 +73,8 @@ export default class JafScreen extends Component<{}> {
       // Toast.show(rollno,Toast.LONG);
       // if(status=="true"){
         this.setState({
-          company_name: responseData.data.company_name,
-          cpi_cutoff: responseData.data.cpi_cutoff,
-          description:responseData.data.description,
-          jaf_name:responseData.data.jaf_name,
-          jaf_no:responseData.data.jaf_no,
-          signedup:responseData.data.signedup,
-          stipend:responseData.data.stipend,
+          status: false,
+          dataSource: this.state.dataSource.cloneWithRows(responseData.data),
         });
         var name = this.state.name;
       Toast.show(name,Toast.SHORT);
@@ -107,11 +99,25 @@ export default class JafScreen extends Component<{}> {
     }
   onJaf(){
     Toast.show("Signed Jaf");
+
   }
  
   openDrawer() {
     const rootNavigation = this.props.screenProps.rootNavigation;
     rootNavigation.navigate('DrawerOpen'); 
+  }
+  renderJaf(jaf){
+    Toast.show(jaf.company_name);
+    return (
+
+        <View style={styles.containerStyle}>
+        <Text >
+
+        jaf company:
+        {jaf.company_name}
+        </Text>
+        </View>
+      );
   }
   renderMainView(){
     return (
@@ -131,44 +137,16 @@ export default class JafScreen extends Component<{}> {
                     />
                   }                
               />
-        <ScrollView>
+        
       
         <Image source={background} style={styles.background} resizeMode="cover">
-        <View style={styles.markWrap}>
-            <Image source={mark} style={styles.mark} resizeMode="contain" />
-          </View>
-          <View style={styles.wrapper}>
+        
+          
+        <ListView dataSource = {this.state.dataSource} renderRow = {this.renderJaf.bind(this)} />
 
-        <Text style={styles.welcome}>
-          Company name : {this.state.company_name}  
-        </Text>
-        <Text style={styles.welcome}>
-          CPI cutoff: {this.state.cpi_cutoff}
-        </Text>
-        <Text style={styles.welcome}>
-          Job Description : {this.state.description}
-        </Text>
-        <Text style={styles.welcome}>
-          JAF name : {this.state.jaf_name}
-        </Text>
-        <Text style={styles.welcome}>
-          JAF no : {this.state.jaf_no}
-        </Text>
-        <Text style={styles.welcome}>
-          Signed : {this.state.signedup}
-        </Text>
-        <Text style={styles.welcome}>
-          Stipend : {this.state.stipend}
-        </Text>
-
-        <TouchableOpacity onPress={this.onJaf.bind(this)}>
-              <View style={styles.button}>
-                <Text style={styles.buttonText}>Sign Jaf</Text>
-              </View>
-            </TouchableOpacity>
-      </View>
+     
         </Image>
-        </ScrollView>
+        
         
       </View> 
     );
@@ -276,5 +254,56 @@ const styles = StyleSheet.create({
   signupLinkText: {
     color: "#FFF",
     marginLeft: 5,
-  }
+  },
+  content:{
+      flex:1,
+  },
+  orderImage:{
+      height: 200,
+      alignSelf:'stretch',
+    },
+    submit: {
+      margin: 10 ,
+        alignSelf:'center',
+        padding: 10,
+        width: 250 
+    },
+  containerStyle: {
+    flexDirection: 'row',
+    flex: 1,
+    borderBottomWidth: 1,
+    borderColor: '#e2e2e2',
+    padding: 10,
+    paddingLeft: 15,
+    backgroundColor: '#fff'
+  },
+  statusContainer: {
+    height: 120,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderColor: '#e2e2e2',
+    padding: 10,
+    paddingLeft: 15,
+    backgroundColor: '#fff'
+  },
+  imageStyle: {
+    width: 70, 
+    height: 70, 
+    marginRight: 20
+  },
+  textStyle: {
+    flex: 2,
+    justifyContent: 'center'
+  },
+  priceStyle: {
+    alignItems: 'center',
+    marginTop: 3,
+    borderRadius: 3
+  },
+  totalStyle: {
+    color: 'white',
+    
+    fontSize: 18,
+    marginRight: 10,
+  },
 });
