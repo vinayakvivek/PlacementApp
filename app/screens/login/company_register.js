@@ -262,7 +262,7 @@ let styles = StyleSheet.create({
     fontSize: 18,
   },
   signup: {
-    backgroundColor: '#FF3366',
+    backgroundColor: '#043077',
     paddingVertical: 25,
     borderRadius:20,
     width:width/2,

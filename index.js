@@ -26,8 +26,7 @@ const DrawApp = DrawerNavigator({
         // screen: Profile,
       },
     Logout: {
-        screen: Logoutscreen
-
+        screen: ({ navigation }) => <Logoutscreen    screenProps={{ rootNavigation: navigation }} /> 
      }
 });
 
@@ -42,11 +41,14 @@ const Profile = StackNavigator({
 	}
 );
 
-// const Logoutscreen = StackNavigator({
-	
+// const Logout = StackNavigator({
+// 	Logout:{
+// 		screen:Logoutscreen
+// 	}
 
 // 	},
 // 	{
+// 		headerMode: 'none'
 // 	}
 // );
 // const LoginScreen = StackNavigator({

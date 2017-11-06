@@ -37,17 +37,17 @@ export default class Logoutscreen extends Component<{}> {
     const resetAction = NavigationActions.reset({
           index: 0,
           actions: [
-            NavigationActions.navigate({ routeName: 'MainLogin'})
+            NavigationActions.navigate({ routeName: 'MainLogin',})
           ]
         });
-        this.props.navigation.dispatch(resetAction);
+        this.props.screenProps.rootNavigation.dispatch(resetAction);
   }
 
   getLogout(){
-
+    const rootNavigation = this.props.screenProps.rootNavigation;
     var url = URL + "/logout";
     fetch(url, {
-      method: "POST",
+      method: "GET",
       headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -59,6 +59,14 @@ export default class Logoutscreen extends Component<{}> {
       Toast.show(status,Toast.SHORT);
       // Toast.show(name,Toast.LONG);
       // Toast.show(some,Toast.LONG);
+      // const resetAction = NavigationActions.reset({
+      //       index: 0,
+      //       actions: [
+      //         NavigationActions.navigate({ routeName: 'MainLogin', params: {}})
+      //       ]
+      //     });
+      //     rootNavigation.dispatch(resetAction);
+      //     Toast.show("somrtreg bvdfb",Toast.SHORT);
       if(status=="true"){
         this.openApp();
       }else {
@@ -79,6 +87,13 @@ export default class Logoutscreen extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
+      <Image source={background} style={styles.background} resizeMode="cover">
+        <View style={styles.markWrap}>
+
+            <Image source={mark} style={styles.mark} resizeMode="contain" />
+          </View>
+          <View style={styles.wrapper}>
+
         <Text style={styles.welcome}>
           Are you sure to log out?
         </Text>
@@ -87,25 +102,61 @@ export default class Logoutscreen extends Component<{}> {
                 <Text style={styles.buttonText}>Logout</Text>
               </View>
         </TouchableOpacity>
+        </View>
+        </Image>
+
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
   },
+  container: {
+    flex: 1,
+  },
+  markWrap: {
+    flex: 1,
+    paddingVertical: 30,
+  },
+  mark: {
+    width: null,
+    height: null,
+    flex: 1,
+  },
+  background: {
+    width, 
+    height,
+  },
+  wrapper: {
+    paddingVertical: 30,
+  },
+  inputWrap: {
+    flexDirection: "row",
+    marginVertical: 10,
+    height: 40,
+    borderBottomWidth: 1,
+    borderBottomColor: "#CCC"
+  },
+  iconWrap: {
+    paddingHorizontal: 7,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  icon: {
+    height: 20,
+    width: 20,
+  },
+  input: {
+    flex: 1,
+    paddingHorizontal: 10,
+  },
   button: {
-    backgroundColor: "#FF3366",
+    backgroundColor: "#043077",
     paddingVertical: 20,
     borderRadius:20,
     width:width/2,
@@ -113,5 +164,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 30,
+  },
+  buttonText: {
+    color: "#FFF",
+    fontSize: 18,
+  },
+  forgotPasswordText: {
+    color: "#D8D8D8",
+    backgroundColor: "transparent",
+    textAlign: "right",
+    paddingRight: 15,
+  },
+  signupWrap: {
+    backgroundColor: "transparent",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  accountText: {
+    color: "#D8D8D8"
+  },
+  signupLinkText: {
+    color: "#FFF",
+    marginLeft: 5,
   }
 });
