@@ -41,13 +41,12 @@ export default class IcLogin extends Component {
       username: "",
       password: "",
       type:2,
-      token: null,
     };
 
   }
 
   componentDidMount(){
-    this.retrieveToken();
+    // this.retrieveToken();
   }
 
   openApp(token) {
@@ -59,36 +58,10 @@ export default class IcLogin extends Component {
     //     });
         this.props.navigation.dispatch(resetAction);
   }
-  checkToken(token){
-    var url = URL + "/user/check-token/";
-    fetch(url, {
-      method: "GET",
-      headers: {
-        'Authorization' : 'Token ' + token,
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-      },
-    })
-    .then( (response) => response.json())
-    .then( (responseData) => {
-      var valid = responseData.valid;
-      if (valid) {
-        this.saveToken(token);
-        this.openApp(token);
-      }
-      else{
-        Toast.show("Not Valid",Toast.SHORT);
-      }
-    })
-    .catch( (error) => {
-      console.log(error);
-      Toast.show("Error", Toast.SHORT);
-    });
-  }
 
-  getToken(){
+  getLogin(){
 
-    var url = URL + "/api-token-auth/";
+    var url = URL + "/login";
     fetch(url, {
       method: "POST",
       headers: {
@@ -103,9 +76,17 @@ export default class IcLogin extends Component {
     })
     .then( (response) => response.json())
     .then( (responseData) => {
-      var token = responseData.token;
-      Toast.show(token,Toast.SHORT);
-      this.checkToken(token);
+      var status = responseData.status;
+      Toast.show(status,Toast.SHORT);
+      var name = responseData.data;
+      // Toast.show(name,Toast.LONG);
+      var username = this.state.username;
+      // Toast.show(some,Toast.LONG);
+      if(status=="true"){
+        this.openApp(username);
+      }else {
+        Toast.show("Not Valid 'this toast is by app' (^_^)",Toast.SHORT);
+      }
     })
     .catch( (error) => {
       console.log(error);
@@ -115,33 +96,33 @@ export default class IcLogin extends Component {
   }
 
 
-  retrieveToken(){
-    try {
-      store.get('token')
-      .then( (token) => {
-        this.checkToken(token);
-      });
-    }
-    catch (error) {
-      Toast.show("Failed Token Retrieve",Toast.SHORT);
-    }
-  }
+  // retrieveToken(){
+  //   try {
+  //     store.get('token')
+  //     .then( (token) => {
+  //       this.checkToken(token);
+  //     });
+  //   }
+  //   catch (error) {
+  //     Toast.show("Failed Token Retrieve",Toast.SHORT);
+  //   }
+  // }
 
-  saveToken(token){
-    try {
-      store.save('token',token);
-      Toast.show("Token Success Save",Toast.SHORT);
-    }
-    catch (error) {
-      console.log(error);
-      Toast.show("Failed Token Save",Toast.SHORT);
-    }
-  }
+  // saveToken(token){
+  //   try {
+  //     store.save('token',token);
+  //     Toast.show("Token Success Save",Toast.SHORT);
+  //   }
+  //   catch (error) {
+  //     console.log(error);
+  //     Toast.show("Failed Token Save",Toast.SHORT);
+  //   }
+  // }
   onPressSignUp(){
     this.props.navigation.navigate('RegisterCompany');
   }
   onLoginPressed() {
-    this.getToken();
+    this.getLogin();
   }
 
   render() {
@@ -160,7 +141,7 @@ export default class IcLogin extends Component {
               </View>
               <TextInput 
                 onChangeText={ (text)=> this.setState({username: text}) }
-                placeholder="Company ID" 
+                placeholder="Email" 
                 placeholderTextColor="#FFF"
                 style={styles.input} 
               />
@@ -180,7 +161,7 @@ export default class IcLogin extends Component {
             
             <TouchableOpacity onPress={this.onLoginPressed.bind(this)}>
               <View style={styles.button}>
-                <Text style={styles.buttonText}>Login In</Text>
+                <Text style={styles.buttonText}>Login</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -268,6 +249,9 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#FF3366",
     paddingVertical: 20,
+    borderRadius:20,
+    width:width/2,
+    marginLeft:width/4,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 30,

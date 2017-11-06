@@ -1,1 +1,1 @@
-export default URL = 'http://192.168.0.106:5000'
+export default URL = 'http://10.42.0.86:5000'

@@ -83,7 +83,7 @@ export default class IcLogin extends Component {
       // Toast.show(name,Toast.LONG);
       var username = this.state.username;
       // Toast.show(some,Toast.LONG);
-      if(status){
+      if(status=="true"){
         this.openApp(username);
       }else {
         Toast.show("Not Valid 'this toast is by app' (^_^)",Toast.SHORT);
@@ -140,7 +140,7 @@ export default class IcLogin extends Component {
             
             <TouchableOpacity onPress={this.onLoginPressed.bind(this)}>
               <View style={styles.button}>
-                <Text style={styles.buttonText}>Login In</Text>
+                <Text style={styles.buttonText}>Login</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -201,6 +201,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF3366",
     paddingVertical: 20,
     alignItems: "center",
+    borderRadius:20,
+    width:width/2,
+    marginLeft:width/4,
     justifyContent: "center",
     marginTop: 30,
   },

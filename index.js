@@ -2,7 +2,10 @@ import { AppRegistry,
 		StyleSheet,
   Text,
   View } from 'react-native';
-import Logoutscreen from './App';
+
+import React, { Component } from 'react';
+
+import Logoutscreen from './app/screens/login/logout.js';
 import StudentLogin from './app/screens/login/student_login.js'
 import IcLogin from './app/screens/login/ic_login.js'
 import CompanyLogin from './app/screens/login/company_login.js'
@@ -15,25 +18,72 @@ import {
   StackNavigator,
   DrawerNavigator,
 } from 'react-navigation'
+
+
 const DrawApp = DrawerNavigator({
 	Profile: { 
         screen: ({ navigation }) => <Profile    screenProps={{ rootNavigation: navigation }} /> 
+        // screen: Profile,
       },
     Logout: {
         screen: Logoutscreen
 
      }
 });
+
+
 const Profile = StackNavigator({
-		StudentProfile: {
-		screen : StudentScreen
+	StudentProfile: {
+			screen : StudentScreen
 		},
 	},
 	{
+		headerMode: 'none'
 	}
 );
-const LoginScreen = StackNavigator({
-	MainLogin: {
+
+// const Logoutscreen = StackNavigator({
+	
+
+// 	},
+// 	{
+// 	}
+// );
+// const LoginScreen = StackNavigator({
+// 	MainLogin: {
+// 		screen : HomeLogin
+// 	},
+// 	Student: {
+//       screen: StudentLogin
+//     },
+//     Ic: {
+//       screen: IcLogin
+//     },
+//     Company: {
+//       screen: CompanyLogin
+//     },
+//     RegisterCompany:{
+//     	screen: CompanyRegister
+//     },
+//     Hey : {
+//     	screen: Profile
+//     },
+//   },
+//   {
+//     headerMode: 'none'
+//   }
+// );
+
+
+
+
+
+
+const App = StackNavigator({
+    // Login: {
+    //   screen : LoginScreen
+    // },
+    MainLogin: {
 		screen : HomeLogin
 	},
 	Student: {
@@ -47,21 +97,6 @@ const LoginScreen = StackNavigator({
     },
     RegisterCompany:{
     	screen: CompanyRegister
-    },
-    Hey : {
-    	screen: Profile
-    },
-  },
-  {
-    headerMode: 'none'
-  }
-);
-
-
-
-const App = StackNavigator({
-    Login: {
-      screen : LoginScreen
     },
     HomeApp: {
       screen : DrawApp

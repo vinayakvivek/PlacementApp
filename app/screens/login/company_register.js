@@ -37,7 +37,7 @@ export default class CompanyRegister extends Component {
 
 		super(props);
 		this.state = {
-			username: "",
+			
 			password: "",
 			email:"",
 			companyname: "",
@@ -58,17 +58,28 @@ export default class CompanyRegister extends Component {
 			    'Content-Type': 'application/json',
 			},
       body: JSON.stringify({
-        username: this.state.username,
+        
         password: this.state.password,
         email:  this.state.email,
-        companyname: this.state.companyname,
+        name: this.state.companyname,
         
       })
     })
     .then( (response) => response.json())
     .then( (responseData) => {
-    	Toast.show("Company Registered")
-    	this.openLogin();
+        var status = responseData.status;
+        Toast.show(status,Toast.SHORT);
+        var name = responseData.data;
+        // Toast.show(name,Toast.LONG);
+        var username = this.state.username;
+        // Toast.show(some,Toast.LONG);
+        if(status){
+          // this.openApp(username);
+          Toast.show("Company Registered");
+          this.openLogin();
+        }else {
+          Toast.show("Not Valid 'this toast is by app' (^_^)",Toast.SHORT);
+        }
     })
     .catch( (error) => {
       console.log(error);
@@ -76,6 +87,23 @@ export default class CompanyRegister extends Component {
     });
  
   }
+
+  // <View style={styles.inputContainer}>
+  //             <View style={styles.iconContainer}>
+  //               <Image 
+  //                 source={personIcon}
+  //                 style={styles.inputIcon}
+  //                 resizeMode="contain"
+  //               />
+  //             </View>
+  //             <TextInput
+  //               style={[styles.input, styles.whiteFont]}
+  //               onChangeText={ (text)=> this.setState({username: text}) }
+  //               placeholder="UserName"
+  //               placeholderTextColor="#FFF"
+  //               underlineColorAndroid='transparent' 
+  //             />
+  //           </View>
 	render() {
     return (
       <ScrollView style={styles.container}>
@@ -104,22 +132,7 @@ export default class CompanyRegister extends Component {
               />
             </View>
             
-            <View style={styles.inputContainer}>
-              <View style={styles.iconContainer}>
-                <Image 
-                  source={personIcon}
-                  style={styles.inputIcon}
-                  resizeMode="contain"
-                />
-              </View>
-              <TextInput
-                style={[styles.input, styles.whiteFont]}
-                onChangeText={ (text)=> this.setState({username: text}) }
-                placeholder="UserName"
-                placeholderTextColor="#FFF"
-                underlineColorAndroid='transparent' 
-              />
-            </View>
+            
 
             <View style={styles.inputContainer}>
               <View style={styles.iconContainer}>
@@ -153,16 +166,18 @@ export default class CompanyRegister extends Component {
                 placeholderTextColor="#FFF" 
               />
             </View>
+            
+             <TouchableOpacity onPress={this.onSignUp.bind(this)}>
+              <View style={styles.signup}>
+                <Text style={styles.whiteFont}>Register</Text>
+              </View>
+            </TouchableOpacity>
 
           </View>
 
           <View style={styles.footerContainer}>
 
-            <TouchableOpacity onPress={this.onSignUp.bind(this)}>
-              <View style={styles.signup}>
-                <Text style={styles.whiteFont}>Register</Text>
-              </View>
-            </TouchableOpacity>
+            
           </View>
         </Image>
       </ScrollView>
@@ -249,9 +264,13 @@ let styles = StyleSheet.create({
   signup: {
     backgroundColor: '#FF3366',
     paddingVertical: 25,
+    borderRadius:20,
+    width:width/2,
+    marginLeft:width/4,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 15,
+    marginTop:60,
   },
   signin: {
     justifyContent: 'center',

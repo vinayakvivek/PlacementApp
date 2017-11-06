@@ -128,8 +128,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   button: {
-    backgroundColor: "#FF3366",
+    backgroundColor: "#043077",
     paddingVertical: 20,
+    borderRadius:20,
+    width:width/2,
+    marginLeft:width/4,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 30,
