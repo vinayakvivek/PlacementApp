@@ -115,10 +115,7 @@ export default class Logoutscreen extends Component<{}> {
         <ScrollView>
 
       <Image source={background} style={styles.background} resizeMode="cover">
-        <View style={styles.markWrap}>
-
-            <Image source={mark} style={styles.mark} resizeMode="contain" />
-          </View>
+        
           <View style={styles.wrapper}>
 
         <Text style={styles.welcome}>
@@ -149,6 +146,8 @@ const styles = StyleSheet.create({
   },
   markWrap: {
     flex: 1,
+    width:width/2,
+    height:width/2,
     paddingVertical: 30,
   },
   mark: {

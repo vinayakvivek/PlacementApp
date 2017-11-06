@@ -67,7 +67,7 @@ export default class JafScreen extends Component<{}> {
     .then( (response) => response.json())
     .then( (responseData) => {
       var status = responseData.status;
-      Toast.show(status,Toast.SHORT);
+      // Toast.show(status,Toast.SHORT);
       
       // var rollno = this.state.data.rollno;
       // Toast.show(rollno,Toast.LONG);
@@ -77,8 +77,8 @@ export default class JafScreen extends Component<{}> {
           dataSource: this.state.dataSource.cloneWithRows(responseData.data),
         });
         var name = this.state.name;
-      Toast.show(name,Toast.SHORT);
-        Toast.show("updated");
+      // Toast.show(name,Toast.SHORT);
+        // Toast.show("updated");
       // }else {
       //   Toast.show("Not Valid 'this toast is by app' (^_^)",Toast.SHORT);
       // }
@@ -98,7 +98,7 @@ export default class JafScreen extends Component<{}> {
       );
     }
   onJaf(){
-    Toast.show("Signed Jaf");
+    // Toast.show("Signed Jaf");
 
   }
  
@@ -107,10 +107,10 @@ export default class JafScreen extends Component<{}> {
     rootNavigation.navigate('DrawerOpen'); 
   }
   rowPressed(jaf){
-    Toast.show("to be added");
+    Toast.show(jaf.description,Toast.SHORT);
   }
   renderJaf(jaf){
-    Toast.show(jaf.company_name);
+    // Toast.show(jaf.company_name);
     return (
       <TouchableOpacity onPress = { () => this.rowPressed(jaf) } >
 
@@ -133,7 +133,7 @@ export default class JafScreen extends Component<{}> {
 
          <NavigationBar
                   tintColor='#3C3C3C'
-                  title={{ title: 'Welcome ' +this.state.name, tintColor: 'white' }}  
+                  title={{ title: 'Jafs ' , tintColor: 'white' }}  
                   leftButton={
                     <Button
                       onPress = {this.openDrawer}

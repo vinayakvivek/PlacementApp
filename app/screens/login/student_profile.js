@@ -51,7 +51,7 @@ export default class StudentScreen extends Component<{}> {
   }
   componentDidMount(){
     this.pageload();
-    Toast.show("com completed");
+    // Toast.show("com completed");
   }
   pageload(){
     var url = URL + "/student";
@@ -68,7 +68,7 @@ export default class StudentScreen extends Component<{}> {
     .then( (response) => response.json())
     .then( (responseData) => {
       var status = responseData.status;
-      Toast.show(status,Toast.SHORT);
+      // Toast.show(status,Toast.SHORT);
       
       // var rollno = this.state.data.rollno;
       // Toast.show(rollno,Toast.LONG);
@@ -81,8 +81,8 @@ export default class StudentScreen extends Component<{}> {
           status:false,
         });
         var name = this.state.name;
-      Toast.show(name,Toast.SHORT);
-        Toast.show("updated");
+      // Toast.show(name,Toast.SHORT);
+      //   Toast.show("updated");
       // }else {
       //   Toast.show("Not Valid 'this toast is by app' (^_^)",Toast.SHORT);
       // }
@@ -102,7 +102,7 @@ export default class StudentScreen extends Component<{}> {
       );
     }
   onJaf(){
-    Toast.show("Show Jaf");
+    // Toast.show("Show Jaf");
     this.props.navigation.navigate('JafPage');
   }
  
@@ -140,16 +140,16 @@ export default class StudentScreen extends Component<{}> {
           Welcome {this.state.name}  
         </Text>
         <Text style={styles.welcome}>
-          Full Name: {this.state.name}
+          Full Name : {this.state.name}
         </Text>
         <Text style={styles.welcome}>
-          Roll No:{this.state.rollno}
+          Roll No : {this.state.rollno}
         </Text>
         <Text style={styles.welcome}>
-          Cpi:{this.state.cpi}
+          Cpi : {this.state.cpi}
         </Text>
         <Text style={styles.welcome}>
-          Department Name: {this.state.deptname}
+          Department Name : {this.state.deptname}
         </Text>
 
         <TouchableOpacity onPress={this.onJaf.bind(this)}>
