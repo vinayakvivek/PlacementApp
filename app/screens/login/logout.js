@@ -17,6 +17,7 @@ import {
   TouchableHighlight,
   Dimensions,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 
 import URL from '../../constants.js';
@@ -24,6 +25,7 @@ import URL from '../../constants.js';
 import Toast from 'react-native-simple-toast';
 
 import { NavigationActions } from 'react-navigation';
+import NavigationBar from 'react-native-navbar';
 
 const { width, height } = Dimensions.get("window");
 
@@ -33,6 +35,13 @@ const lockIcon = require("./lock.png");
 const personIcon = require("./person.png");
 
 export default class Logoutscreen extends Component<{}> {
+  constructor(props) {
+
+    super(props);
+    
+    this.openDrawer = this.openDrawer.bind(this);
+
+  }
   openApp() {
     const resetAction = NavigationActions.reset({
           index: 0,
@@ -41,6 +50,10 @@ export default class Logoutscreen extends Component<{}> {
           ]
         });
         this.props.screenProps.rootNavigation.dispatch(resetAction);
+  }
+   openDrawer() {
+    const rootNavigation = this.props.screenProps.rootNavigation;
+    rootNavigation.navigate('DrawerOpen'); 
   }
 
   getLogout(){
@@ -87,6 +100,20 @@ export default class Logoutscreen extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
+       <NavigationBar
+                  tintColor='#3C3C3C'
+                  title={{ title: 'Confirm ', tintColor: 'white' }}  
+                  leftButton={
+                    <Button
+                      onPress = {this.openDrawer}
+                      title="Menu"
+                      color='#3C3C3C'
+                      // color="#841584"
+                    />
+                  }                
+              />
+        <ScrollView>
+
       <Image source={background} style={styles.background} resizeMode="cover">
         <View style={styles.markWrap}>
 
@@ -104,6 +131,7 @@ export default class Logoutscreen extends Component<{}> {
         </TouchableOpacity>
         </View>
         </Image>
+        </ScrollView>
 
       </View>
     );

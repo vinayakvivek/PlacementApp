@@ -16,8 +16,9 @@ import {
   Image,
   TouchableHighlight,
   Dimensions,
+  ScrollView,
   TouchableOpacity,
-  NavigationBar,
+  
 } from 'react-native';
 
 import URL from '../../constants.js';
@@ -26,6 +27,7 @@ import Toast from 'react-native-simple-toast';
 
 import { NavigationActions } from 'react-navigation';
 
+import NavigationBar from 'react-native-navbar';
 const { width, height } = Dimensions.get("window");
 
 const background = require("./back.jpg");
@@ -111,7 +113,22 @@ export default class StudentScreen extends Component<{}> {
     return (
       
        <View style={styles.container}>
-     
+
+
+         <NavigationBar
+                  tintColor='#3C3C3C'
+                  title={{ title: 'Welcome ' +this.state.name, tintColor: 'white' }}  
+                  leftButton={
+                    <Button
+                      onPress = {this.openDrawer}
+                      title="Menu"
+                      color='#3C3C3C'
+                      // color="#841584"
+                    />
+                  }                
+              />
+        <ScrollView>
+      
         <Image source={background} style={styles.background} resizeMode="cover">
         <View style={styles.markWrap}>
             <Image source={mark} style={styles.mark} resizeMode="contain" />
@@ -141,6 +158,7 @@ export default class StudentScreen extends Component<{}> {
             </TouchableOpacity>
       </View>
         </Image>
+        </ScrollView>
         
       </View> 
     );

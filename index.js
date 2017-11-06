@@ -12,6 +12,7 @@ import CompanyLogin from './app/screens/login/company_login.js'
 import CompanyRegister from './app/screens/login/company_register.js'
 import HomeLogin from './app/screens/login/home_login.js'
 import StudentScreen from './app/screens/login/student_profile.js'
+import WebScreen from './app/screens/login/webpage.js'
 
 import {
   TabNavigator,
@@ -27,8 +28,13 @@ const DrawApp = DrawerNavigator({
       },
     Logout: {
         screen: ({ navigation }) => <Logoutscreen    screenProps={{ rootNavigation: navigation }} /> 
+     },
+     Official_Website:{
+        screen: ({ navigation }) => <WebScreen    screenProps={{ rootNavigation: navigation }} /> 
+
      }
 });
+
 
 
 const Profile = StackNavigator({
