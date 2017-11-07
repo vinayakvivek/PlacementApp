@@ -15,6 +15,8 @@ import StudentScreen from './app/screens/login/student_profile.js'
 import WebScreen from './app/screens/login/webpage.js'
 import JafScreen from './app/screens/login/jafpage.js'
 import JafInfoScreen from './app/screens/login/jafinfopage.js'
+import CompanyScreen from './app/screens/login/company_profile.js'
+
 
 
 
@@ -39,11 +41,37 @@ const DrawApp = DrawerNavigator({
      }
 });
 
+const CompanyDraw = DrawerNavigator({
+	Profile: { 
+        screen: ({ navigation }) => <CompanyProfile    screenProps={{ rootNavigation: navigation }} /> 
+        // screen: Profile,
+      },
+    Logout: {
+        screen: ({ navigation }) => <Logoutscreen    screenProps={{ rootNavigation: navigation }} /> 
+     },
+    
+});
+
 
 
 const Profile = StackNavigator({
 		StudentProfile: {
 			screen : StudentScreen
+		},
+		JafPage:{
+			screen: JafScreen
+		},
+		JafInfo:{
+			screen: JafInfoScreen
+		}
+	},
+	{
+		headerMode: 'none'
+	}
+);
+const CompanyProfile = StackNavigator({
+		CompanyProfile: {
+			screen : CompanyScreen
 		},
 		JafPage:{
 			screen: JafScreen
@@ -118,6 +146,9 @@ const App = StackNavigator({
     },
     HomeApp: {
       screen : DrawApp
+    },
+    CompanyHome: {
+      screen : CompanyProfile
     },
   },
   { 

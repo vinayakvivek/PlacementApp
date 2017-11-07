@@ -49,13 +49,13 @@ export default class IcLogin extends Component {
     // this.retrieveToken();
   }
 
-  openApp(token) {
-    // const resetAction = NavigationActions.reset({
-    //       index: 0,
-    //       actions: [
-    //         NavigationActions.navigate({ routeName: 'App', params: {token:token}})
-    //       ]
-    //     });
+  openApp(name) {
+    const resetAction = NavigationActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName: 'CompanyHome', params: {name:name}})
+          ]
+        });
         this.props.navigation.dispatch(resetAction);
   }
 
