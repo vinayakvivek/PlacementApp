@@ -14,6 +14,7 @@ import HomeLogin from './app/screens/login/home_login.js'
 import StudentScreen from './app/screens/login/student_profile.js'
 import WebScreen from './app/screens/login/webpage.js'
 import JafScreen from './app/screens/login/jafpage.js'
+import JafInfoScreen from './app/screens/login/jafinfopage.js'
 
 
 
@@ -46,6 +47,9 @@ const Profile = StackNavigator({
 		},
 		JafPage:{
 			screen: JafScreen
+		},
+		JafInfo:{
+			screen: JafInfoScreen
 		}
 	},
 	{

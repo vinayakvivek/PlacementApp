@@ -50,7 +50,7 @@ export default class JafScreen extends Component<{}> {
   }
   componentDidMount(){
     this.pageload();
-    Toast.show("com completed");
+    // Toast.show("com completed");
   }
   pageload(){
     var url = URL + "/student/jafs";
@@ -107,7 +107,8 @@ export default class JafScreen extends Component<{}> {
     rootNavigation.navigate('DrawerOpen'); 
   }
   rowPressed(jaf){
-    Toast.show(jaf.description,Toast.SHORT);
+    // Toast.show(jaf.description,Toast.SHORT);
+     this.props.navigation.navigate('JafInfo', { jaf : jaf });
   }
   renderJaf(jaf){
     // Toast.show(jaf.company_name);
