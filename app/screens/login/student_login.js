@@ -61,7 +61,7 @@ export default class StudentLogin extends Component {
 
 
   getLogin(){
-
+    Toast.show("sho nkhs ");
     var url = URL + "/login";
     fetch(url, {
       method: "POST",
@@ -77,6 +77,8 @@ export default class StudentLogin extends Component {
     })
     .then( (response) => response.json())
     .then( (responseData) => {
+    Toast.show("response ");
+
       var status = responseData.status;
       Toast.show(status,Toast.SHORT);
       var name = responseData.data;
