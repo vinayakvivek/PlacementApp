@@ -70,15 +70,16 @@ const Profile = StackNavigator({
 	}
 );
 const CompanyProfile = StackNavigator({
-		CompanyProfile: {
+		CompanyProfilePage: {
 			screen : CompanyScreen
-		},
-		JafPage:{
-			screen: JafScreen
-		},
-		JafInfo:{
-			screen: JafInfoScreen
 		}
+		// ,
+		// JafPage:{
+		// 	screen: JafScreen
+		// },
+		// JafInfo:{
+		// 	screen: JafInfoScreen
+		// }
 	},
 	{
 		headerMode: 'none'
@@ -148,7 +149,7 @@ const App = StackNavigator({
       screen : DrawApp
     },
     CompanyHome: {
-      screen : CompanyProfile
+      screen : CompanyDraw
     },
   },
   { 
