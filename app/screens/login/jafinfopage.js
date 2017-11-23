@@ -52,10 +52,15 @@ export default class JafInfoScreen extends Component<{}> {
             update_status:false,
     };
     this.openDrawer = this.openDrawer.bind(this);
+    this.popScreen = this.popScreen.bind(this);
+
     // this.onJafSignOut = this.onJafSignOut.bind(this);
     // this.onJafSignIn = this.onJafSignIn.bind(this);
 
 
+  }
+  popScreen() {
+    this.props.navigation.dispatch(NavigationActions.back());
   }
   componentDidMount(){
     this.pageload();
@@ -63,7 +68,7 @@ export default class JafInfoScreen extends Component<{}> {
   }
   pageload(){
     var my= this.props.navigation.state.params.jaf ;
-    Toast.show(my.jaf_name);
+    // Toast.show(my.jaf_name);
     var url = URL + "/student/jaf";
     fetch(url, {
       method: "POST",
@@ -79,7 +84,7 @@ export default class JafInfoScreen extends Component<{}> {
     .then( (response) => response.json())
     .then( (responseData) => {
       var status = responseData.status;
-      Toast.show(status,Toast.SHORT);
+      // Toast.show(status,Toast.SHORT);
 
       this.setState({
             company_name: responseData.data.company_name,
@@ -119,7 +124,7 @@ export default class JafInfoScreen extends Component<{}> {
     }
 
   onJafSignIn(){
-    Toast.show("Sign in ");
+    // Toast.show("Sign in ");
     // Toast.show(jaf.company_id);
     // Toast.show(jaf.jaf_no);
     // Toast.show(jaf.jaf_name);
@@ -143,7 +148,8 @@ export default class JafInfoScreen extends Component<{}> {
           if(status=="true"){
             Toast.show("Signed In Successfully");
              // this.props.navigation.navigate('JafPage');
-             this.props.navigation.dispatch(NavigationActions.back());
+             // this.props.navigation.dispatch(NavigationActions.back());
+             this.popScreen();
 
           }
           else{
@@ -177,7 +183,8 @@ export default class JafInfoScreen extends Component<{}> {
           if(status=="true"){
             Toast.show("Signed Out Successfully");
              // this.props.navigation.navigate('JafPage');
-             this.props.navigation.dispatch(NavigationActions.back());
+             // this.props.navigation.dispatch(NavigationActions.back());
+             this.popScreen();
 
           }
           else{
