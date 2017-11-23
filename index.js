@@ -72,13 +72,14 @@ const Profile = StackNavigator({
 const CompanyProfile = StackNavigator({
 		CompanyProfilePage: {
 			screen : CompanyScreen
-		},
-		JafPage:{
-			screen: JafScreen
-		},
-		JafInfo:{
-			screen: JafInfoScreen
 		}
+		// ,
+		// JafPage:{
+		// 	screen: JafScreen
+		// },
+		// JafInfo:{
+		// 	screen: JafInfoScreen
+		// }
 	},
 	{
 		headerMode: 'none'
