@@ -11,7 +11,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   ToastAndroid,
   Image,
   TouchableHighlight,
@@ -21,6 +20,8 @@ import {
   TouchableOpacity,
   
 } from 'react-native';
+
+import { Button } from 'react-native-elements'
 
 import URL from '../../constants.js';
 
@@ -115,14 +116,12 @@ export default class JafScreen extends Component<{}> {
     return (
       <TouchableOpacity onPress = { () => this.rowPressed(jaf) } >
 
-        <View style={styles.containerStyle}>
-          <Text>{jaf.jaf_no} : {jaf.jaf_name}</Text>
-          <Text style={styles.welcome} > jaf company: {jaf.company_name}</Text>
+        <View style={styles.container2}>
+          <Text style={styles.welcome}><Text style={{fontWeight: "bold"}}>Company</Text>  : {jaf.company_name}</Text>
+          <Text style={styles.textStyle}><Text style={{fontWeight: "bold"}}>JAF no.</Text>     : {jaf.jaf_no}</Text>
+          <Text style={styles.textStyle}><Text style={{fontWeight: "bold"}}>JAF name</Text> : {jaf.jaf_name}</Text>
+          <Text style={styles.textStyle}><Text style={{fontWeight: "bold"}}>Stipend</Text>     : {jaf.stipend} </Text>
         </View>
-          <View style={styles.containerStyle}>
-
-         <Text > Stipend: {jaf.stipend} </Text>
-         </View>
         </TouchableOpacity>
       );
   }
@@ -134,11 +133,11 @@ export default class JafScreen extends Component<{}> {
 
          <NavigationBar
                   tintColor='#3C3C3C'
-                  title={{ title: 'Jafs ' , tintColor: 'white' }}  
+                  title={{ title: 'JAFs ' , tintColor: 'white' }}  
                   leftButton={
                     <Button
                       onPress = {this.openDrawer}
-                      title="Menu"
+                      title="MENU"
                       color='#3C3C3C'
                       // color="#841584"
                     />
@@ -146,13 +145,10 @@ export default class JafScreen extends Component<{}> {
               />
         
       
-        <Image source={background} style={styles.background} resizeMode="cover">
-        
           
+      
         <ListView dataSource = {this.state.dataSource} renderRow = {this.renderJaf.bind(this)} />
 
-     
-        </Image>
         
         
       </View> 
@@ -185,13 +181,21 @@ export default class JafScreen extends Component<{}> {
 //   },
 // });
 const styles = StyleSheet.create({
+  container2: {
+    borderBottomWidth: 1,
+    borderColor: '#e2e2e2',
+    padding: 20,
+    paddingLeft: 15,
+    backgroundColor: '#fff',
+    margin:10
+  },
   welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    fontSize: 15,
+    marginLeft: 10,
   },
   container: {
     flex: 1,
+    backgroundColor: "#d3d3d3"
   },
   markWrap: {
     flex: 1,
@@ -299,11 +303,11 @@ const styles = StyleSheet.create({
     marginRight: 20
   },
   textStyle: {
-    flex: 2,
-    justifyContent: 'center'
+    fontSize: 15,
+    marginLeft: 10
   },
   priceStyle: {
-    alignItems: 'center',
+    alignItems: 'center', 
     marginTop: 3,
     borderRadius: 3
   },

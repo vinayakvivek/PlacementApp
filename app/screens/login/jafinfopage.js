@@ -11,7 +11,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   ToastAndroid,
   Image,
   TouchableHighlight,
@@ -21,6 +20,8 @@ import {
   TouchableOpacity,
   
 } from 'react-native';
+
+import { Button } from 'react-native-elements'
 
 import URL from '../../constants.js';
 
@@ -230,22 +231,27 @@ export default class JafInfoScreen extends Component<{}> {
      if(this.state.signedup){
       // return this.renderUnsign(jaf);
       return (
-      <TouchableOpacity onPress={() => this.onJafSignOut(this)}>
-              <View  style={styles.button}>
-                <Text style={styles.buttonText}> UnSign </Text>
-              </View>
-            </TouchableOpacity>
+        <View style={styles.button_out}>  
+            <Button
+              raised
+              loadingright
+              buttonStyle={styles.button}
+              onPress={() => this.onJafSignOut(this)}
+              title='SIGNED (CLICK TO UNSIGN)' />
+        </View>
       );
 
     }
     // return this.renderSignUp(jaf);
     return (
-      
-       <TouchableOpacity onPress={() => this.onJafSignIn(this)}>
-              <View  style={styles.button}>
-                <Text style={styles.buttonText}> Sign Up </Text>
-              </View>
-            </TouchableOpacity>
+      <View style={styles.button_out}>
+        <Button
+          raised
+          loadingright
+          buttonStyle={styles.button}
+          onPress={() => this.onJafSignIn(this)}
+          title='CLICK TO SIGN' />
+      </View>
     );
   }
 
@@ -265,11 +271,11 @@ export default class JafInfoScreen extends Component<{}> {
 
          <NavigationBar
                   tintColor='#3C3C3C'
-                  title={{ title: 'Jafs : '+jaf.jaf_name , tintColor: 'white' }}  
+                  title={{ title: jaf.jaf_name , tintColor: 'white' }}  
                   leftButton={
                     <Button
                       onPress = {this.openDrawer}
-                      title="Menu"
+                      title="MENU"
                       color='#3C3C3C'
                       // color="#841584"
                     />
@@ -278,27 +284,27 @@ export default class JafInfoScreen extends Component<{}> {
 
           <ScrollView>
       
-        <Image source={background} style={styles.background} resizeMode="cover">
-        <View style={styles.markWrap}>
-            <Image source={mark} style={styles.mark} resizeMode="contain" />
-          </View>
-          <View style={styles.wrapper}>
+        <View style={styles.container2}>
+            
+          <Text style={styles.welcome}>
+            <Text style={{fontWeight: "bold"}}>Company</Text> : {this.state.company_name}  
+          </Text>
+          <Text style={styles.welcome}>
+            <Text style={{fontWeight: "bold"}}>JAF no</Text> : {this.state.jaf_no}  
+          </Text>
+          <Text style={styles.welcome}>
+            <Text style={{fontWeight: "bold"}}>JAF Name</Text> : {this.state.jaf_name}  
+          </Text>
+          <Text style={styles.welcome}>
+            <Text style={{fontWeight: "bold"}}>Description</Text> : {this.state.description}  
+          </Text>
+          <Text style={styles.welcome}>
+            <Text style={{fontWeight: "bold"}}>Stipend</Text> : {this.state.stipend}
+          </Text>
           
-        <Text style={styles.welcome}>
-          Company : {this.state.company_name}  
-        </Text>
-        <Text style={styles.welcome}>
-          Company ID : {this.state.company_id}  
-        </Text>
-        <Text style={styles.welcome}>
-          Jaf Name : {this.state.jaf_name}  
-        </Text>
-        
-       
+          
+        </View>
         {this.renderView()}
-        
-      </View>
-        </Image>
         </ScrollView>
         </View>
       );
@@ -325,13 +331,21 @@ export default class JafInfoScreen extends Component<{}> {
 //   },
 // });
 const styles = StyleSheet.create({
+  container2: {
+    marginTop : 15,
+    borderBottomWidth: 1,
+    borderColor: '#e2e2e2',
+    padding: 20,
+    paddingLeft: 15,
+    backgroundColor: '#fff',
+    margin:10
+  },
   welcome: {
-    fontSize: 20,
-    textAlign: 'center',
     margin: 10,
   },
   container: {
     flex: 1,
+    backgroundColor: "#d3d3d3"
   },
   markWrap: {
     flex: 1,
@@ -369,15 +383,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
   },
+  button_out: {
+    marginTop: 20
+  },
   button: {
-    backgroundColor: "#043077",
-    paddingVertical: 20,
-    borderRadius:20,
-    width:width/2,
-    marginLeft:width/4,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
+    backgroundColor: "#00ced1",
   },
   buttonText: {
     color: "#FFF",

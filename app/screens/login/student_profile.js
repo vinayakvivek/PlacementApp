@@ -11,7 +11,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   ToastAndroid,
   Image,
   TouchableHighlight,
@@ -20,6 +19,8 @@ import {
   TouchableOpacity,
   
 } from 'react-native';
+
+import { Button } from 'react-native-elements'
 
 import URL from '../../constants.js';
 
@@ -117,49 +118,49 @@ export default class StudentScreen extends Component<{}> {
 
 
          <NavigationBar
-                  tintColor='#3C3C3C'
-                  title={{ title: 'Welcome ' +this.state.name, tintColor: 'white' }}  
-                  leftButton={
-                    <Button
-                      onPress = {this.openDrawer}
-                      title="Menu"
-                      color='#3C3C3C'
-                      // color="#841584"
-                    />
-                  }                
-              />
+              tintColor='#3C3C3C'
+              title={{ title: 'Profile', tintColor: 'white' }}  
+              leftButton={
+                <Button
+                  onPress = {this.openDrawer}
+                  title='MENU'
+                  color='#3C3C3C'
+                  // color="#841584"
+                />
+              }                
+          />
         <ScrollView>
       
-        <Image source={background} style={styles.background} resizeMode="cover">
-        <View style={styles.markWrap}>
-            <Image source={mark} style={styles.mark} resizeMode="contain" />
-          </View>
-          <View style={styles.wrapper}>
-
         <Text style={styles.welcome}>
           Welcome {this.state.name}  
+        </Text>        
+        
+        <View style={styles.container2}>
+
+        <Text style={styles.name}>
+          Name   : {this.state.name}
         </Text>
-        <Text style={styles.welcome}>
-          Full Name : {this.state.name}
-        </Text>
-        <Text style={styles.welcome}>
+        <Text style={styles.name}>
           Roll No : {this.state.rollno}
         </Text>
-        <Text style={styles.welcome}>
-          Cpi : {this.state.cpi}
+        <Text style={styles.name}>
+          Cpi        : {this.state.cpi}
         </Text>
-        <Text style={styles.welcome}>
-          Department Name : {this.state.deptname}
+        <Text style={styles.name}>
+          Dept     : {this.state.deptname}
         </Text>
 
-        <TouchableOpacity onPress={this.onJaf.bind(this)}>
-              <View style={styles.button}>
-                <Text style={styles.buttonText}>Show Jaf</Text>
-              </View>
-            </TouchableOpacity>
       </View>
-        </Image>
-        </ScrollView>
+
+      <View style={styles.button_out}>
+          <Button
+            raised
+            loadingright
+            buttonStyle={styles.button}
+            onPress={this.onJaf.bind(this)}
+            title='SHOW JAFS' />
+      </View>
+      </ScrollView>
         
       </View> 
     );
@@ -191,13 +192,28 @@ export default class StudentScreen extends Component<{}> {
 //   },
 // });
 const styles = StyleSheet.create({
+  container2: {
+    borderBottomWidth: 1,
+    borderColor: '#e2e2e2',
+    padding: 20,
+    paddingLeft: 15,
+    backgroundColor: '#fff',
+    margin:10
+  },
+
   welcome: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 10,
   },
+  name: {
+    fontSize: 20,
+    textAlign: 'left',
+    marginLeft: 15
+  },
   container: {
     flex: 1,
+    backgroundColor: "#d3d3d3"
   },
   markWrap: {
     flex: 1,
@@ -235,15 +251,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
   },
+  button_out: {
+    marginTop: 20
+  },
   button: {
-    backgroundColor: "#043077",
-    paddingVertical: 20,
-    borderRadius:20,
-    width:width/2,
-    marginLeft:width/4,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
+    backgroundColor: "#00ced1",
   },
   buttonText: {
     color: "#FFF",
