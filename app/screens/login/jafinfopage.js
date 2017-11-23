@@ -142,7 +142,8 @@ export default class JafInfoScreen extends Component<{}> {
         // Toast.show(status);
           if(status=="true"){
             Toast.show("Signed In Successfully");
-             this.props.navigation.navigate('JafPage');
+             // this.props.navigation.navigate('JafPage');
+             this.props.navigation.dispatch(NavigationActions.back());
 
           }
           else{
@@ -175,7 +176,8 @@ export default class JafInfoScreen extends Component<{}> {
         // Toast.show(status);
           if(status=="true"){
             Toast.show("Signed Out Successfully");
-             this.props.navigation.navigate('JafPage');
+             // this.props.navigation.navigate('JafPage');
+             this.props.navigation.dispatch(NavigationActions.back());
 
           }
           else{
