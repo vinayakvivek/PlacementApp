@@ -52,6 +52,9 @@ export default class JafInfoScreen extends Component<{}> {
             update_status:false,
     };
     this.openDrawer = this.openDrawer.bind(this);
+    // this.onJafSignOut = this.onJafSignOut.bind(this);
+    // this.onJafSignIn = this.onJafSignIn.bind(this);
+
 
   }
   componentDidMount(){
@@ -63,7 +66,7 @@ export default class JafInfoScreen extends Component<{}> {
     Toast.show(my.jaf_name);
     var url = URL + "/student/jaf";
     fetch(url, {
-      method: "GET",
+      method: "POST",
       headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -121,39 +124,68 @@ export default class JafInfoScreen extends Component<{}> {
     // Toast.show(jaf.jaf_no);
     // Toast.show(jaf.jaf_name);
 
-    // var url = URL + "/student/sign_jaf";
-    // fetch(url, {
-    //   method: "POST",
-    //   headers: {
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     company_id: this.state.company_id,
-    //     jaf_no:this.state.jaf_no ,
-    //   })
-    // })
-    // .then( (response) => response.json())
-    // .then( (responseData) => {
-    //     var status = responseData.status;
-    //     // Toast.show(status);
-    //       if(status=="true"){
-    //         Toast.show("Signed In Successfully");
-    //          this.props.navigation.navigate('JafPage');
+    var url = URL + "/student/sign_jaf";
+    fetch(url, {
+      method: "POST",
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        company_id: this.state.company_id,
+        jaf_no:this.state.jaf_no ,
+      })
+    })
+    .then( (response) => response.json())
+    .then( (responseData) => {
+        var status = responseData.status;
+        // Toast.show(status);
+          if(status=="true"){
+            Toast.show("Signed In Successfully");
+             this.props.navigation.navigate('JafPage');
 
-    //       }
-    //       else{
-    //         Toast.show(responseData.data);
-    //       }
-    // })
-    // .catch( (error) => {
-    //   console.log(error);
-    //   Toast.show("Error", Toast.SHORT);
-    // }).done();
+          }
+          else{
+            Toast.show(responseData.data);
+          }
+    })
+    .catch( (error) => {
+      console.log(error);
+      Toast.show("Error", Toast.SHORT);
+    }).done();
 
   }
-  onJafSignOut(jaf){
-    Toast.show("Sign out ");
+  onJafSignOut(){
+    // Toast.show("Sign out ");
+    var url = URL + "/student/signout_jaf";
+    fetch(url, {
+      method: "POST",
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        company_id: this.state.company_id,
+        jaf_no:this.state.jaf_no ,
+      })
+    })
+    .then( (response) => response.json())
+    .then( (responseData) => {
+        var status = responseData.status;
+        // Toast.show(status);
+          if(status=="true"){
+            Toast.show("Signed Out Successfully");
+             this.props.navigation.navigate('JafPage');
+
+          }
+          else{
+            Toast.show(responseData.data);
+          }
+    })
+    .catch( (error) => {
+      console.log(error);
+      Toast.show("Error", Toast.SHORT);
+    }).done();
 
   }
  
@@ -161,36 +193,36 @@ export default class JafInfoScreen extends Component<{}> {
     const rootNavigation = this.props.screenProps.rootNavigation;
     rootNavigation.navigate('DrawerOpen'); 
   }
-  rowPressed(jaf){
+  rowPressed(){
     // Toast.show(jaf.description,Toast.SHORT);
   }
-  renderUnsign(jaf){
-    // Toast.show(jaf.company_name);
-    return (
-      <TouchableOpacity onPress={this.onJafSignOut(jaf)}>
-              <View style={styles.button}>
-                <Text style={styles.buttonText}> UnSign </Text>
-              </View>
-            </TouchableOpacity>
-      );
-  }
-  renderSignUp(jaf){
-    return (
+  // renderUnsign(jaf){
+  //   // Toast.show(jaf.company_name);
+  //   return (
+  //     <TouchableOpacity onPress={this.onJafSignOut(jaf)}>
+  //             <View style={styles.button}>
+  //               <Text style={styles.buttonText}> UnSign </Text>
+  //             </View>
+  //           </TouchableOpacity>
+  //     );
+  // }
+  // renderSignUp(jaf){
+  //   return (
       
-       <TouchableOpacity onPress={this.onJafSignIn(jaf)}>
-              <View style={styles.button}>
-                <Text style={styles.buttonText}> Sign Up </Text>
-              </View>
-            </TouchableOpacity>
-    );
+  //      <TouchableOpacity onPress={this.onJafSignIn(jaf)}>
+  //             <View style={styles.button}>
+  //               <Text style={styles.buttonText}> Sign Up </Text>
+  //             </View>
+  //           </TouchableOpacity>
+  //   );
 
-  }
+  // }
   renderView(){
-     if(jaf.signedup){
+     if(this.state.signedup){
       // return this.renderUnsign(jaf);
       return (
-      <TouchableOpacity >
-              <View onPress={this.onJafSignOut()} style={styles.button}>
+      <TouchableOpacity onPress={() => this.onJafSignOut(this)}>
+              <View  style={styles.button}>
                 <Text style={styles.buttonText}> UnSign </Text>
               </View>
             </TouchableOpacity>
@@ -200,8 +232,8 @@ export default class JafInfoScreen extends Component<{}> {
     // return this.renderSignUp(jaf);
     return (
       
-       <TouchableOpacity >
-              <View onPress={this.onJafSignIn()} style={styles.button}>
+       <TouchableOpacity onPress={() => this.onJafSignIn(this)}>
+              <View  style={styles.button}>
                 <Text style={styles.buttonText}> Sign Up </Text>
               </View>
             </TouchableOpacity>
@@ -217,7 +249,7 @@ export default class JafInfoScreen extends Component<{}> {
 
   }
   renderMainView() {
-    // var jaf = this.props.navigation.state.params.jaf
+    var jaf = this.props.navigation.state.params.jaf
     return(
        <View style={styles.container}>
 
@@ -247,22 +279,12 @@ export default class JafInfoScreen extends Component<{}> {
           Company : {this.state.company_name}  
         </Text>
         <Text style={styles.welcome}>
-          Company ID : {jaf.company_id}  
+          Company ID : {this.state.company_id}  
         </Text>
         <Text style={styles.welcome}>
           Jaf Name : {this.state.jaf_name}  
         </Text>
-        <Text style={styles.welcome}>
-          Jaf No : {jaf.jaf_no}
-        </Text>
-        <Text style={styles.welcome}>
-          Description : {jaf.description}
-        </Text>
-        <Text style={styles.welcome}>
-          Cpi Cutoff : {jaf.cpi_cutoff}
-        </Text>
-        <Text style={styles.welcome}>
-          Stipend : {jaf.stipend}
+        
         </Text>
         {this.renderView()}
         
