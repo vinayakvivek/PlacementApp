@@ -287,7 +287,7 @@ export default class JafInfoScreen extends Component<{}> {
           Jaf Name : {this.state.jaf_name}  
         </Text>
         
-        </Text>
+       
         {this.renderView()}
         
       </View>
